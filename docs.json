@@ -29,13 +29,13 @@
           {
             "group": "Git 教程",
             "pages": [
-              {"name": "简介", "url": "git-tutorial/introduction"},
-              {"name": "基础知识", "url": "git-tutorial/basics"},
-              {"name": "核心操作", "url": "git-tutorial/core-operations"},
-              {"name": "分支与合并", "url": "git-tutorial/branching-merging"},
-              {"name": "远程仓库", "url": "git-tutorial/remote-repositories"},
-              {"name": "协作", "url": "git-tutorial/collaboration"},
-              {"name": "高级技巧", "url": "git-tutorial/advanced-techniques"}
+              "git-tutorial/introduction",
+              "git-tutorial/basics",
+              "git-tutorial/core-operations",
+              "git-tutorial/branching-merging",
+              "git-tutorial/remote-repositories",
+              "git-tutorial/collaboration",
+              "git-tutorial/advanced-techniques"
             ]
           }
         ]
