@@ -11,50 +11,6 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "指南",
-        "groups": [
-          {
-            "group": "开始使用",
-            "pages": [
-              "introduction",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "基础知识",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API 参考",
-        "groups": [
-          {
-            "group": "API 文档",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "端点示例",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "C++ 专栏",
         "groups": [
           {
