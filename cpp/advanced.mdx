@@ -1,0 +1,127 @@
+---
+title: 'C++ 高级特性'
+description: 'C++ 编程语言的高级功能和特性'
+---
+
+# C++ 高级特性
+
+本章节将介绍 C++ 的一些高级特性，适合已经掌握基础知识的开发者。
+
+## 面向对象编程
+
+C++ 支持完整的面向对象编程范式：
+
+### 类和对象
+
+```cpp
+class Person {
+private:
+    std::string name;
+    int age;
+    
+public:
+    // 构造函数
+    Person(const std::string& n, int a) : name(n), age(a) {}
+    
+    // 成员函数
+    void introduce() const {
+        std::cout << "我是 " << name << "，今年 " << age << " 岁。" << std::endl;
+    }
+};
+
+// 创建对象
+Person person("张三", 25);
+person.introduce();
+```
+
+### 继承
+
+```cpp
+class Student : public Person {
+private:
+    std::string school;
+    
+public:
+    Student(const std::string& n, int a, const std::string& s)
+        : Person(n, a), school(s) {}
+        
+    void study() const {
+        std::cout << "我在 " << school << " 学习。" << std::endl;
+    }
+};
+```
+
+## 模板编程
+
+模板是 C++ 最强大的特性之一：
+
+```cpp
+// 函数模板
+template<typename T>
+T max(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+// 类模板
+template<typename T>
+class Array {
+private:
+    T* data;
+    size_t size;
+    
+public:
+    Array(size_t s) : size(s) {
+        data = new T[size];
+    }
+    
+    ~Array() {
+        delete[] data;
+    }
+    
+    T& operator[](size_t index) {
+        return data[index];
+    }
+    
+    size_t getSize() const {
+        return size;
+    }
+};
+```
+
+## 异常处理
+
+C++ 提供了完善的异常处理机制：
+
+```cpp
+try {
+    // 可能抛出异常的代码
+    if (someCondition) {
+        throw std::runtime_error("发生错误");
+    }
+} catch (const std::exception& e) {
+    // 处理异常
+    std::cerr << "捕获到异常: " << e.what() << std::endl;
+} catch (...) {
+    // 捕获所有其他类型的异常
+    std::cerr << "捕获到未知异常" << std::endl;
+}
+```
+
+## 智能指针
+
+现代 C++ 中，推荐使用智能指针来管理内存：
+
+```cpp
+#include <memory>
+
+// 独占所有权的智能指针
+std::unique_ptr<int> up(new int(5));
+
+// 共享所有权的智能指针
+std::shared_ptr<int> sp = std::make_shared<int>(10);
+
+// 弱引用智能指针
+std::weak_ptr<int> wp = sp;
+```
+
+在后续章节中，我们将深入探讨这些高级特性，以及更多现代 C++ 的功能。

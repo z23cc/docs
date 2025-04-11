@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "薄荷入门套件",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -11,10 +11,10 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "指南",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "开始使用",
             "pages": [
               "introduction",
               "quickstart",
@@ -22,7 +22,7 @@
             ]
           },
           {
-            "group": "Essentials",
+            "group": "基础知识",
             "pages": [
               "essentials/markdown",
               "essentials/code",
@@ -35,16 +35,16 @@
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "API 参考",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "API 文档",
             "pages": [
               "api-reference/introduction"
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "端点示例",
             "pages": [
               "api-reference/endpoint/get",
               "api-reference/endpoint/create",
@@ -53,22 +53,35 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "C++ 专栏",
+        "groups": [
+          {
+            "group": "C++ 教程",
+            "pages": [
+              "cpp/introduction",
+              "cpp/basics",
+              "cpp/advanced"
+            ]
+          }
+        ]
       }
     ],
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
+          "anchor": "文档",
           "href": "https://mintlify.com/docs",
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Community",
+          "anchor": "社区",
           "href": "https://mintlify.com/community",
           "icon": "slack"
         },
         {
-          "anchor": "Blog",
+          "anchor": "博客",
           "href": "https://mintlify.com/blog",
           "icon": "newspaper"
         }
@@ -82,13 +95,13 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
+        "label": "支持",
         "href": "mailto:hi@mintlify.com"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
+      "label": "控制面板",
       "href": "https://dashboard.mintlify.com"
     }
   },

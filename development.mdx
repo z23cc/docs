@@ -1,16 +1,16 @@
 ---
-title: 'Development'
-description: 'Preview changes locally to update your docs'
+title: '开发'
+description: '在本地预览更改以更新您的文档'
 ---
 
 <Info>
-  **Prerequisite**: Please install Node.js (version 19 or higher) before proceeding. <br />
-  Please upgrade to ```docs.json``` before proceeding and delete the legacy ```mint.json``` file.
+  **前提条件**：请在继续之前安装 Node.js（19 版或更高版本）。<br />
+  请在继续之前升级到 ```docs.json``` 并删除旧版 ```mint.json``` 文件。
 </Info>
 
-Follow these steps to install and run Mintlify on your operating system:
+按照以下步骤在您的操作系统上安装和运行 Mintlify：
 
-**Step 1**: Install Mintlify:
+**步骤 1**：安装 Mintlify：
 
 <CodeGroup>
 
@@ -24,31 +24,31 @@ yarn global add mintlify
 
 </CodeGroup>
 
-**Step 2**: Navigate to the docs directory (where the `docs.json` file is located) and execute the following command:
+**步骤 2**：导航到文档目录（`docs.json` 文件所在位置）并执行以下命令：
 
 ```bash
 mintlify dev
 ```
 
-A local preview of your documentation will be available at `http://localhost:3000`.
+您的文档的本地预览将在 `http://localhost:3000` 上可用。
 
-### Custom Ports
+### 自定义端口
 
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. To run Mintlify on port 3333, for instance, use this command:
+默认情况下，Mintlify 使用端口 3000。您可以使用 `--port` 标志自定义 Mintlify 运行的端口。例如，要在端口 3333 上运行 Mintlify，请使用此命令：
 
 ```bash
 mintlify dev --port 3333
 ```
 
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
+如果您尝试在已经使用的端口上运行 Mintlify，它将使用下一个可用端口：
 
 ```md
-Port 3000 is already in use. Trying 3001 instead.
+端口 3000 已在使用中。正在尝试使用 3001 代替。
 ```
 
-## Mintlify Versions
+## Mintlify 版本
 
-Please note that each CLI release is associated with a specific version of Mintlify. If your local website doesn't align with the production version, please update the CLI:
+请注意，每个 CLI 发布都与特定版本的 Mintlify 相关联。如果您的本地网站与生产版本不一致，请更新 CLI：
 
 <CodeGroup>
 
@@ -62,46 +62,45 @@ yarn global upgrade mintlify
 
 </CodeGroup>
 
-## Validating Links
+## 验证链接
 
-The CLI can assist with validating reference links made in your documentation. To identify any broken links, use the following command:
+CLI 可以帮助验证文档中的引用链接。要识别任何损坏的链接，请使用以下命令：
 
 ```bash
 mintlify broken-links
 ```
 
-## Deployment
+## 部署
 
 <Tip>
-  Unlimited editors available under the [Pro
-  Plan](https://mintlify.com/pricing) and above.
+  [专业计划](https://mintlify.com/pricing)及以上版本提供无限编辑者。
 </Tip>
 
-If the deployment is successful, you should see the following:
+如果部署成功，您应该会看到以下内容：
 
 <Frame>
   <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-## Code Formatting
+## 代码格式化
 
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
+我们建议在您的 IDE 上使用扩展来识别和格式化 MDX。如果您是 VSCode 用户，请考虑使用 [MDX VSCode 扩展](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) 进行语法高亮显示，以及 [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) 进行代码格式化。
 
-## Troubleshooting
+## 故障排除
 
 <AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
+  <Accordion title='错误：无法使用 darwin-arm64 运行时加载 "sharp" 模块'>
 
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of mintlify: `npm remove -g mintlify`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall mintlify: `npm install -g mintlify`
+    这可能是由于 node 版本过旧所致。请尝试以下操作：
+    1. 删除当前安装的 mintlify 版本：`npm remove -g mintlify`
+    2. 升级到 Node v19 或更高版本。
+    3. 重新安装 mintlify：`npm install -g mintlify`
   </Accordion>
 
-  <Accordion title="Issue: Encountering an unknown error">
+  <Accordion title="问题：遇到未知错误">
   
-    Solution: Go to the root of your device and delete the \~/.mintlify folder. Afterwards, run `mintlify dev` again.
+    解决方案：转到设备根目录并删除 \~/.mintlify 文件夹。之后，再次运行 `mintlify dev`。
   </Accordion>
 </AccordionGroup>
 
-Curious about what changed in the CLI version? [Check out the CLI changelog.](https://www.npmjs.com/package/mintlify?activeTab=versions)
+想了解 CLI 版本中的变化？[查看 CLI 更新日志。](https://www.npmjs.com/package/mintlify?activeTab=versions)

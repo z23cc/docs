@@ -1,0 +1,66 @@
+---
+title: 'C++ 基础知识'
+description: 'C++ 编程语言的基础概念和语法'
+---
+
+# C++ 基础知识
+
+本章节将介绍 C++ 编程语言的基础知识，适合初学者入门。
+
+## 开发环境设置
+
+在开始学习 C++ 之前，您需要设置开发环境：
+
+- **编译器**: GCC, Clang, 或 MSVC
+- **集成开发环境(IDE)**: Visual Studio, CLion, Code::Blocks 等
+- **构建工具**: CMake, Make 等
+
+## 第一个 C++ 程序
+
+每个编程语言的学习都从 "Hello, World!" 开始：
+
+```cpp
+#include <iostream>
+
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
+}
+```
+
+## 变量和数据类型
+
+C++ 支持各种数据类型：
+
+- 整数类型: `int`, `short`, `long`, `long long`
+- 浮点类型: `float`, `double`, `long double`
+- 字符类型: `char`, `wchar_t`
+- 布尔类型: `bool`
+- 自定义类型: 类和结构体
+
+## 控制流
+
+C++ 提供了多种控制流语句：
+
+- 条件语句: `if`, `else if`, `else`, `switch`
+- 循环语句: `for`, `while`, `do-while`
+- 跳转语句: `break`, `continue`, `goto`
+
+## 函数
+
+函数是 C++ 程序的基本构建块：
+
+```cpp
+// 函数声明
+int add(int a, int b);
+
+// 函数定义
+int add(int a, int b) {
+    return a + b;
+}
+
+// 函数调用
+int result = add(5, 3);  // result = 8
+```
+
+后续章节将详细探讨这些概念，并介绍更多高级特性。
