@@ -24,6 +24,17 @@
         ]
       },
       {
+        "tab": "AI工具专栏",
+        "groups": [
+          {
+            "group": "AI开发工具",
+            "pages": [
+              "ai-tools/boomerang-tasks"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Git 专栏",
         "groups": [
           {
