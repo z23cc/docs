@@ -1,10 +1,10 @@
 ---
-title: '高级技巧'
+title: '管理提交历史'
 ---
 
-# Git 高级技巧：精通版本控制艺术
+# 管理提交历史：Rebase, Reset, Revert, Cherry-pick, Reflog
 
-掌握 Git 的基础操作是日常开发的基石，但要真正驾驭复杂的项目流程、高效协作并优雅地管理代码历史，你需要深入了解 Git 提供的高级技巧。这些工具赋予你强大的能力来重塑历史、诊断问题和优化工作流。
+Git 提供了强大的工具来修改和管理提交历史。理解这些工具的原理和适用场景对于维护清晰、整洁的项目历史至关重要。
 
 **⚠️ 警告：** 其中一些命令（特别是 `git rebase` 和 `git reset`）会**重写提交历史**。在对**已推送到共享仓库的分支**使用这些命令时，必须**极其谨慎**，否则会给协作者带来严重问题。请务必理解其原理和潜在风险。
 
@@ -104,100 +104,6 @@ pick i7j8k9l Commit message 3
 
 **场景:** 在推送前清理本地分支，将多个小的、临时的提交合并成逻辑单元，修改不清晰的提交信息，移除调试代码等。
 
-## 拣选 (Cherry-pick): 精准复制代码提交
-
-`git cherry-pick <commit-hash>` 允许你选择一个或多个来自**其他分支**的提交，并将这些提交引入的**代码变更**应用到你**当前所在**的分支。它会创建一个**新的提交**，包含被拣选提交的变更内容。
-
-![Git cherry-pick 操作](../images/git-tutorial/git-cherry-pick.png)
-
-*cherry-pick 操作允许你选择指定的提交，并将其应用到当前分支*
-
-**核心场景:**
-
-1.  **紧急修复 (Hotfix):** 在 `develop` 分支修复了一个线上 Bug (提交 B)，需要立即将这个修复应用到 `main` 分支，但不希望引入 `develop` 上的其他未完成特性。
-    ```bash
-    git switch main
-    git cherry-pick <commit-hash-B>
-    git push origin main
-    ```
-2.  **功能回传 (Backporting):** 将某个在新版本分支 (`v2.0`) 中开发的小功能或优化 (提交 C)，选择性地应用到旧的、仍在维护的版本分支 (`v1.1`) 上。
-    ```bash
-    git switch v1.1
-    git cherry-pick <commit-hash-C>
-    ```
-
-**注意事项:**
-*   `cherry-pick` 复制的是**变更内容**，不是提交本身，因此会在当前分支创建**新的提交**，具有不同的哈希值。
-*   如果被拣选的提交依赖于其父提交的更改，直接拣选可能会失败或引入错误。
-*   过度使用 `cherry-pick` 可能意味着分支策略混乱。优先考虑 `merge` 或 `rebase`。
-
-## 标签 (Tagging): 标记重要的里程碑
-
-标签 (Tag) 是指向特定提交的**固定引用**，通常用于标记项目历史中的重要节点，最常见的用途是标记**软件发布版本**（如 `v1.0`, `v2.1.3-beta`）。
-
-**类型:**
-
-*   **轻量标签 (Lightweight Tag):** 只是一个指向特定提交的指针（像一个不会移动的分支名）。创建简单：
-    ```bash
-    # 为当前 HEAD 创建轻量标签
-    git tag v1.0-lw
-    # 为特定提交创建轻量标签
-    git tag v0.9-lw <commit-hash>
-    ```
-*   **附注标签 (Annotated Tag):** 是存储在 Git 数据库中的完整对象。它包含标签创建者、日期、注释信息，并且可以进行 GPG 签名以验证。**强烈推荐用于正式发布。**
-    ```bash
-    # 为当前 HEAD 创建附注标签
-    git tag -a v1.0 -m "正式发布版本 1.0"
-    # 为特定提交创建附注标签并签名
-    git tag -s v1.0 -m "正式发布版本 1.0" <commit-hash>
-    ```
-
-**常用操作:**
-
-*   查看所有标签: `git tag` 或 `git tag -l "v1.*"` (支持通配符)
-*   查看特定标签信息 (包括附注信息): `git show <tagname>`
-*   **推送标签到远程**: 默认 `git push` 不会推送标签。
-    *   推送单个标签: `git push origin <tagname>`
-    *   推送所有本地标签: `git push origin --tags`
-*   删除本地标签: `git tag -d <tagname>`
-*   删除远程标签 (需要先删除本地标签): `git push origin --delete <tagname>`
-*   检出标签 (进入 "detached HEAD" 状态): `git checkout <tagname>`
-
-## 储藏 (Stashing): 临时保存工作现场
-
-当你正在处理某个任务，但需要紧急切换到另一个分支（例如修复 Bug），而当前的工作尚未完成，不适合提交时，`git stash` 可以将你**工作目录**和**暂存区**的未提交更改（已跟踪文件）暂时保存起来，让工作区恢复到 `HEAD` 提交时的干净状态。
-
-**核心场景:**
-
-1.  **紧急切换任务:** 正在开发 `feature-X`，突然需要去 `main` 修复 Bug。
-    ```bash
-    # 在 feature-X 分支
-    git stash save "WIP: implementing X part 1" # 保存当前进度
-    git switch main
-    # ... 修复 bug, commit, push ...
-    git switch feature-X
-    git stash pop # 恢复之前保存的进度
-    ```
-2.  **拉取更新遇阻:** `git pull` 时提示本地有未提交的更改会与远程冲突。
-    ```bash
-    git stash # 储藏本地更改
-    git pull # 拉取并合并远程更新
-    git stash pop # 尝试重新应用本地更改，并解决可能出现的冲突
-    ```
-
-**常用操作:**
-
-*   储藏当前更改: `git stash` 或 `git stash save "描述信息"`
-*   查看储藏列表: `git stash list` (显示如 `stash@{0}`, `stash@{1}`)
-*   应用**最近的**储藏并从列表中**移除**: `git stash pop`
-*   应用**指定的**储藏但**保留**在列表中: `git stash apply stash@{n}`
-*   查看指定储藏的内容: `git stash show stash@{n}`
-*   查看指定储藏的详细差异: `git stash show -p stash@{n}`
-*   删除指定的储藏: `git stash drop stash@{n}`
-*   删除所有储藏: `git stash clear`
-*   储藏**包括未跟踪**的文件: `git stash -u` 或 `git stash --include-untracked`
-*   储藏**所有**文件 (包括忽略文件): `git stash -a` 或 `git stash --all`
-
 ## 重置 (Reset): 回溯提交历史 (需谨慎！)
 
 `git reset` 是一个强大的命令，用于将当前分支的 `HEAD` 指针移动到指定的历史提交。根据不同的模式，它还会影响**暂存区 (Index)** 和**工作目录 (Working Directory)**。
@@ -253,6 +159,33 @@ git push origin main # 推送这个新的撤销提交
 *   **修改本地私有历史**: 使用 `reset` (通常 `--soft` 或 `--mixed`) 或 `rebase -i`。
 *   **撤销公共共享历史**: 使用 `revert`。
 
+## 拣选 (Cherry-pick): 精准复制代码提交
+
+`git cherry-pick <commit-hash>` 允许你选择一个或多个来自**其他分支**的提交，并将这些提交引入的**代码变更**应用到你**当前所在**的分支。它会创建一个**新的提交**，包含被拣选提交的变更内容。
+
+![Git cherry-pick 操作](../images/git-tutorial/git-cherry-pick.png)
+
+*cherry-pick 操作允许你选择指定的提交，并将其应用到当前分支*
+
+**核心场景:**
+
+1.  **紧急修复 (Hotfix):** 在 `develop` 分支修复了一个线上 Bug (提交 B)，需要立即将这个修复应用到 `main` 分支，但不希望引入 `develop` 上的其他未完成特性。
+    ```bash
+    git switch main
+    git cherry-pick <commit-hash-B>
+    git push origin main
+    ```
+2.  **功能回传 (Backporting):** 将某个在新版本分支 (`v2.0`) 中开发的小功能或优化 (提交 C)，选择性地应用到旧的、仍在维护的版本分支 (`v1.1`) 上。
+    ```bash
+    git switch v1.1
+    git cherry-pick <commit-hash-C>
+    ```
+
+**注意事项:**
+*   `cherry-pick` 复制的是**变更内容**，不是提交本身，因此会在当前分支创建**新的提交**，具有不同的哈希值。
+*   如果被拣选的提交依赖于其父提交的更改，直接拣选可能会失败或引入错误。
+*   过度使用 `cherry-pick` 可能意味着分支策略混乱。优先考虑 `merge` 或 `rebase`。
+
 ## 引用日志 (Reflog): Git 的时光机与安全网
 
 Git 在本地记录了你的 `HEAD` 和分支指针在过去一段时间内的移动轨迹。`git reflog` 命令可以查看这份日志，即使某些提交因为 `reset` 或 `rebase` 而从正常的分支历史中“消失”了。
@@ -286,52 +219,3 @@ i7j8k9l HEAD@{2}: commit: Add final touches
 ![Git reflog 操作](../images/git-tutorial/git-reset-modes.png)
 
 *Git reflog 记录了 HEAD 和分支指针的移动历史，可以用来恢复意外删除的提交*
-
-## 二分查找 (`git bisect`): 快速定位引入 Bug 的提交
-
-当发现一个 Bug，只知道它在某个旧版本是好的 (`good`)，在新版本是坏的 (`bad`) 时，`git bisect` 可以通过二分查找的方式，自动或半自动地帮你快速定位到**第一个**引入该 Bug 的提交。
-
-**场景:** 项目部署后出现问题，你知道一周前的版本 `v1.0` 正常，当前 `HEAD` 有问题，期间有上百个提交。
-
-**工作流程:**
-1.  `git bisect start` # 开始二分查找
-2.  `git bisect bad HEAD` # 标记当前版本有问题
-3.  `git bisect good v1.0` # 标记一个已知无问题的版本
-4.  Git 会自动检出历史记录中间的一个提交。
-5.  **测试当前检出的版本**是否有问题。
-6.  告知 Git 测试结果: `git bisect good` (如果这个版本没问题) 或 `git bisect bad` (如果这个版本有问题)。
-7.  Git 会根据你的反馈，继续检出剩余范围的中间提交，重复步骤 5-6。
-8.  最终，Git 会输出第一个被标记为 `bad` 的提交，这就是引入问题的提交。
-9.  `git bisect reset` # 结束查找，回到原来的分支。
-
-`git bisect` 可以极大地缩短调试回归 Bug 的时间。
-
-## 工作树 (`git worktree`): 同时检出多个分支到不同目录
-
-允许你在**同一个仓库**中，将**不同的分支**同时检出到**不同的文件系统目录**下，而无需克隆多次仓库或频繁 `stash` 和 `switch`。
-
-**场景:** 你正在 `feature-A` 分支开发复杂功能，需要紧急修复 `hotfix` 分支的问题，但不想打断 `feature-A` 的环境（如编译产物、依赖）。
-
-**操作:**
-```bash
-# 假设当前在 project/ 目录下
-# 在 project/ 同级目录下创建 hotfix-build 目录，并检出 hotfix 分支
-git worktree add ../hotfix-build hotfix
-
-# 现在你可以 cd ../hotfix-build/ 并在那里独立工作，
-# 同时 project/ 目录仍然是 feature-A 分支的环境。
-
-# 查看当前的工作树
-git worktree list
-
-# 完成 hotfix 工作后，清理工作树 (确保没有未提交更改)
-# 先切换出 hotfix-build 目录
-cd ../project
-git worktree remove ../hotfix-build
-# 或者如果 hotfix 分支也删除了，可以用 prune
-# git worktree prune
-```
-
----
-
-精通这些高级 Git 技巧将显著提升你的开发效率和代码管理能力。然而，**能力越大，责任越大**。务必在充分理解每个命令的效果和潜在风险后，尤其是在团队协作的环境中，审慎地使用它们，特别是那些会**修改共享历史**的命令。

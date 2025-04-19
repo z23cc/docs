@@ -40,13 +40,21 @@
           {
             "group": "Git 教程",
             "pages": [
-              "git-tutorial/introduction",
-              "git-tutorial/basics",
-              "git-tutorial/core-operations",
-              "git-tutorial/branching-merging",
-              "git-tutorial/remote-repositories",
-              "git-tutorial/collaboration",
-              "git-tutorial/advanced-techniques"
+              "git-tutorial/01-introduction",
+              "git-tutorial/02-basics",
+              "git-tutorial/03-core-operations",
+              "git-tutorial/04-branching-merging",
+              "git-tutorial/05-remote-repositories",
+              "git-tutorial/06-collaboration-workflows",
+              "git-tutorial/07-tagging-and-releases",
+              "git-tutorial/08-managing-history",
+              "git-tutorial/09-advanced-tools",
+              "git-tutorial/10-git-submodules-subtrees",
+              "git-tutorial/11-git-lfs",
+              "git-tutorial/12-git-hooks",
+              "git-tutorial/13-git-internals",
+              "git-tutorial/14-maintenance-performance",
+              "git-tutorial/15-security-signing"
             ]
           }
         ]

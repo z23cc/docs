@@ -105,7 +105,7 @@ git commit -m "修复登录页面的样式问题"
 *   **跳过暂存区直接提交 (`-a`)**:
     如果你想提交**所有已跟踪文件**的修改（注意：不包括未跟踪的新文件），可以合并 `add` 和 `commit` 步骤：
     ```bash
-    # 相当于 git add -u &amp;&amp; git commit -m "..."
+    # 相当于 git add -u && git commit -m "..."
     git commit -a -m "更新文档和修复拼写错误"
     ```
     *( `-u` 选项告诉 `git add` 只更新已跟踪的文件)*
