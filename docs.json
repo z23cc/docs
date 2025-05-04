@@ -24,12 +24,13 @@
         ]
       },
       {
-        "tab": "AI工具专栏",
+        "tab": "AI Tools",
         "groups": [
           {
-            "group": "AI开发工具",
+            "group": "AI Development Tools",
             "pages": [
-              "ai-tools/boomerang-tasks"
+              "ai-tools/boomerang-tasks",
+              "ai-tools/general-rules"
             ]
           }
         ]
