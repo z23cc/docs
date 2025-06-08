@@ -1,3 +1,7 @@
+---
+title: 'OP-TEE GP存储系统完整分析'
+---
+
 # OP-TEE GP存储系统完整分析
 
 本分析文档提供了OP-TEE GlobalPlatform (GP) 存储系统的全面技术分析，涵盖从TEE到REE的每个模块和组件。

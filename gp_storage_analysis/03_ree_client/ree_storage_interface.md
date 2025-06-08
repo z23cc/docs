@@ -1,3 +1,7 @@
+---
+title: 'REE 侧存储接口深度分析'
+---
+
 # OP-TEE REE侧存储接口深度分析
 
 本文档深入分析OP-TEE在REE侧的存储接口实现，包括TEE Supplicant文件系统服务、RPC通信协议、安全机制和性能优化等核心技术。
