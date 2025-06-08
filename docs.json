@@ -59,6 +59,75 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "OP-TEE 存储分析",
+        "groups": [
+          {
+            "group": "基础架构",
+            "pages": [
+              "gp_storage_analysis/README",
+              "gp_storage_analysis/01_overview/storage_architecture_overview",
+              "gp_storage_analysis/02_tee_storage/tee_storage_implementation",
+              "gp_storage_analysis/03_ree_client/ree_storage_interface",
+              "gp_storage_analysis/04_storage_backends/storage_backends_analysis"
+            ]
+          },
+          {
+            "group": "安全与加密",
+            "pages": [
+              "gp_storage_analysis/05_encryption_keys/encryption_key_management",
+              "gp_storage_analysis/09_rpmb_technology/rpmb_detailed_analysis",
+              "gp_storage_analysis/10_advanced_key_management/advanced_key_management",
+              "gp_storage_analysis/18_secure_element_storage/se050_secure_element_analysis",
+              "gp_storage_analysis/20_ta_database_encryption/ta_database_encryption_analysis",
+              "gp_storage_analysis/22_security_threat_analysis/storage_security_threat_analysis",
+              "gp_storage_analysis/23_storage_encryption_key_management/storage_encryption_key_detailed_analysis",
+              "gp_storage_analysis/28_storage_security_features/storage_security_comprehensive_analysis"
+            ]
+          },
+          {
+            "group": "系统管理",
+            "pages": [
+              "gp_storage_analysis/07_data_flow/complete_storage_data_flow",
+              "gp_storage_analysis/08_gp_object_model/gp_object_model_detailed",
+              "gp_storage_analysis/11_storage_quota_management/storage_quota_resource_management",
+              "gp_storage_analysis/12_storage_enumeration_search/storage_enumeration_search_mechanisms",
+              "gp_storage_analysis/16_concurrent_access/concurrent_access_control",
+              "gp_storage_analysis/17_memory_management/storage_memory_management",
+              "gp_storage_analysis/18_storage_management_interfaces/storage_management_pta_analysis",
+              "gp_storage_analysis/25_storage_synchronization_mechanisms/storage_synchronization_analysis",
+              "gp_storage_analysis/26_storage_migration_versioning/storage_migration_versioning_analysis"
+            ]
+          },
+          {
+            "group": "平台集成与配置",
+            "pages": [
+              "gp_storage_analysis/13_platform_integration/platform_specific_storage",
+              "gp_storage_analysis/14_build_configuration/storage_build_system",
+              "gp_storage_analysis/19_nvmem_integration/nvmem_framework_analysis",
+              "gp_storage_analysis/24_storage_filesystem_layers/storage_filesystem_architecture_analysis"
+            ]
+          },
+          {
+            "group": "性能与优化",
+            "pages": [
+              "gp_storage_analysis/06_examples_tests/storage_examples_tests_analysis",
+              "gp_storage_analysis/15_error_recovery/error_recovery_mechanisms",
+              "gp_storage_analysis/21_storage_performance_optimization/storage_performance_optimization",
+              "gp_storage_analysis/27_storage_monitoring_diagnostics/storage_monitoring_diagnostics_analysis"
+            ]
+          },
+          {
+            "group": "高级特性与设计",
+            "pages": [
+              "gp_storage_analysis/29_advanced_storage_features/advanced_storage_features_analysis",
+              "gp_storage_analysis/30_storage_design_philosophy/storage_design_philosophy_comprehensive",
+              "gp_storage_analysis/31_architectural_decision_records/storage_architectural_decisions_analysis",
+              "gp_storage_analysis/ADVANCED_STORAGE_ANALYSIS_SUMMARY"
+            ]
+          }
+        ]
       }
     ],
     "global": {
